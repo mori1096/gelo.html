@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Quick Quiz For You 💖</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffe6eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.2);
+            position: relative;
+            width: 80%;
+            max-width: 450px;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            min-height: 80px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            height: 60px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #6c757d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="questionBox">Am I a good boyfriend? 🥺</h1>
+        
+        <div class="buttons">
+            <button id="yesBtn" onclick="nextQuestion()">Yes</button>
+            <button id="noBtn" onclick="handleNo()">No</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+
+        const questionBox = document.getElementById('questionBox');
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+
+        function nextQuestion() {
+            currentStep++;
+
+            // Reset styles and click events for the "No" button at each new step
+            noBtn.style.position = 'static';
+            noBtn.onmouseover = null; 
+            noBtn.onclick = handleNo;
+
+            if (currentStep === 2) {
+                questionBox.innerHTML = "Am I responsible cleaning the house? 🧹✨";
+            } else if (currentStep === 3) {
+                questionBox.innerHTML = "Do you love me? 🥰";
+            } else if (currentStep === 4) {
+                questionBox.innerHTML = "Are you sure with me? 💍";
+            } else if (currentStep === 5) {
+                questionBox.innerHTML = "Call me boss? 🫡👑";
+                
+                // The DODGE feature is now saved for this ultimate final question!
+                noBtn.onmouseover = dodge;
+                noBtn.onclick = dodge;
+            } else if (currentStep === 6) {
+                // The celebration page after she submits to the final prompt!
+                questionBox.innerHTML = "Yay! You made my day, boss! I love you so much! ❤️✨";
+                noBtn.style.display = 'none';
+                yesBtn.style.transform = 'scale(1.4)';
+                yesBtn.innerHTML = "🥰💝";
+                yesBtn.onclick = null; 
+            }
+        }
+
+        function handleNo() {
+            if (currentStep === 1) {
+                alert("Wrong answer! Try clicking the 'Yes' button instead. 😉");
+            } else if (currentStep === 2) {
+                alert("Hey! I scrubbed those floors! Think again! 😂🧹");
+            } else if (currentStep === 3) {
+                alert("You don't mean that! Click Yes! ❤️");
+            } else if (currentStep === 4) {
+                alert("Incorrect! You have to be sure! 💖");
+            }
+        }
+
+        function dodge() {
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 80);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+    </script>
+
+</body>
+</html>
